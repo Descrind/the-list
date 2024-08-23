@@ -1,0 +1,479 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f0f2f5;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the top */
+    padding: 20px;
+    min-height: 100%;
+    overflow-y: auto;
+}
+
+/* Dynamic background styling */
+.background {
+    position: fixed; /* Change to fixed to cover the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Change from 100vh to 100% */
+    overflow: hidden;
+    z-index: -1;
+    background: linear-gradient(135deg, #6B73FF 0%, #000DFF 100%);
+    transition: background-color 0.3s ease;
+}
+
+.background .shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: float 30s infinite ease-in-out;
+}
+
+/* Different shapes */
+.background .shape-1 {
+    width: 150px;
+    height: 150px;
+    background-color: rgba(255, 255, 0, 0.8);
+    top: 10%;
+    left: 5%;
+    animation-duration: 15s;
+    animation-direction: alternate;
+}
+
+.background .shape-2 {
+    width: 200px;
+    height: 200px;
+    background-color: rgba(255, 69, 0, 0.8);
+    top: 70%;
+    left: 10%;
+    animation-duration: 30s;
+}
+
+.background .shape-3 {
+    width: 300px;
+    height: 300px;
+    background-color: rgba(30, 144, 255, 0.8);
+    top: 40%;
+    left: 60%;
+    animation-duration: 20s;
+    animation-direction: alternate-reverse;
+}
+
+.background .shape-4 {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(50, 205, 50, 0.8);
+    top: 80%;
+    left: 75%;
+    animation-duration: 10s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+    }
+    50% {
+        transform: translateY(-40px) translateX(60px);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Container styling */
+.container {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    max-width: 700px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 100px; /* Add top margin to avoid overlap */
+    margin-bottom: 100px;
+}
+
+/* Header styling */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    top: 0;
+    background-color: #ffffff;
+    padding: 10px 0;
+    z-index: 100;
+    border-bottom: 2px solid #f0f2f5;
+    transition: background-color 0.3s ease;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #4A90E2;
+    margin-bottom: 10px;
+}
+
+/* Search and dark mode toggle */
+.top-controls {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.search-btn {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+#search-bar {
+    display: none;
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #ffffff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#dark-mode-toggle {
+    background-color: #4A90E2;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+#dark-mode-toggle:hover {
+    background-color: #357ABD;
+}
+
+/* Button styling (shared by Add Note, Export Notes, and Choose File) */
+.styled-button {
+    padding: 12px;
+    background-color: #4A90E2;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1em;
+    display: inline-block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.styled-button:hover {
+    background-color: #357ABD;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+label[for="import-notes"] {
+    padding: 12px;
+    background-color: #4A90E2;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1em;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+label[for="import-notes"]:hover {
+    background-color: #357ABD;
+}
+
+/* Main content styling */
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+.note-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.note-input input,
+.note-input textarea {
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 1em;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.note-input input::placeholder,
+.note-input textarea::placeholder {
+    color: #aaa;
+}
+
+.note-input button {
+    padding: 12px;
+    background-color: #4A90E2;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1em;
+}
+
+.note-input button:hover {
+    background-color: #357ABD;
+}
+
+/* Notes list styling */
+.notes-list {
+    margin-top: 20px;
+}
+
+.notes-list h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #4A90E2;
+    position: sticky;
+    top: 60px;
+    background-color: #ffffff;
+    padding: 10px 0;
+    z-index: 99;
+    border-bottom: 1px solid #f0f2f5;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.notes-list ul {
+    list-style-type: none;
+}
+
+.note-item {
+    background-color: #f4f4f4;
+    border-left: 5px solid #4A90E2;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.note-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.note-header {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note-header h3 {
+    font-size: 1.2em;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.edit-note-btn {
+    background-color: #6B73FF;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.9em;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+    margin-right: 5px;
+}
+
+.priority-btn {
+    background-color:#21c500;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.9em;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+    margin-right: 5px;
+}
+
+.delete-note-btn {
+    background-color: #FF5E5E;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.9em;
+    padding: 7.5px 14px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.edit-note-btn:hover {
+    background-color:#FFD700;
+}
+.priority-btn:hover {
+    background-color:#00d9ff;
+}
+.delete-note-btn:hover {
+    background-color:crimson;
+}
+
+.high-priority {
+    border-color: #FFD700;
+    background-color: #FFFACD;
+}
+
+.note-body {
+    font-size: 1em;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.note-tags {
+    margin-top: 10px;
+}
+
+.note-tags .tag {
+    display: inline-block;
+    background-color: #4A90E2;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+.ul-reminder{
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left: 2px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f0f2f5;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4A90E2;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #357ABD;
+}
+
+/* Dark Mode */
+.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.dark-mode .background {
+    background: #1e1e1e;
+}
+
+.dark-mode .background .shape-1 {
+    background-color: #858585;
+}
+
+.dark-mode .background .shape-2 {
+    background-color: #424242;
+
+}
+.dark-mode .background .shape-3 {
+    background-color: #414040;
+}
+
+.dark-mode .background .shape-4 {
+    background-color: #cccccc;
+}
+
+.dark-mode .container {
+    background-color: #414141;
+    color: #e0e0e0;
+}
+
+.dark-mode header {
+    background-color: #414141;
+    border-bottom-color: #333;
+}
+
+.dark-mode #search-bar {
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+.dark-mode .note-input input,
+.dark-mode .note-input textarea {
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+.dark-mode .notes-list h2 {
+    background-color: #414141;
+    color: #e0e0e0;
+}
+
+.dark-mode .note-item {
+    background-color: #2e2e2e;
+    color: #e0e0e0;
+}
+
+.dark-mode .note-header h3 {
+    color: #e0e0e0;
+}
+
+.dark-mode .note-body {
+    color: #ccc;
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin-top: 60px; /* Adjust margin for smaller screens */
+        padding: 15px;
+    }
+
+    .note-input input,
+    .note-input textarea {
+        font-size: 0.9em; /* Adjust input font size for smaller screens */
+    }
+
+    h1 {
+        font-size: 2em; /* Adjust heading size */
+    }
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Thoughts</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background">
+        <!-- Background shapes go here -->
+    </div>
+    <div class="top-controls">
+        <button class="search-btn">&#128269;</button>
+        <input type="text" id="search-bar" placeholder="Search notes...">
+        <button id="dark-mode-toggle">Toggle Dark Mode</button>
+    </div>
+    <div class="container">
+        <header>
+            <h1>Everything!</h1>
+        </header>
+        <main>
+            <div class="note-input">
+                <!-- Input fields go here -->
+            </div>
+            <div class="notes-list">
+                <h2>Your Notes</h2>
+                <ul id="notes"></ul>
+            </div>
+        </main>
+        <button id="export-notes" class="styled-button">Export Notes</button>
+        <label for="import-notes">Choose File</label>
+        <input type="file" id="import-notes">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+</html>
